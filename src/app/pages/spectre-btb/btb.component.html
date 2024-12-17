@@ -1,0 +1,92 @@
+<h2>Spectre branch target buffer</h2>
+<div [style.background-color]="getBackgroundColor()">
+  <div *ngIf="x !== undefined">
+    <h2>{{ stepName }}</h2>
+    {{ step }}
+    <table>
+      <tr>
+        <td>index = {{ i }}</td>
+        <td *ngIf="step == 0">←</td>
+      </tr>
+      <tr>
+        <td>if (index &lt; dados.size)</td>
+        <td *ngIf="step == 1">←</td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp; valor = dados[index]</td>
+        <td *ngIf="step == 2">←</td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp; a = valor + 5</td>
+        <td *ngIf="step == 3">
+          ← - operação que influencia a cache de alguma maneira
+        </td>
+      </tr>
+
+      <p></p>
+      <h3 *ngIf="stepName != 'Attack'">Treina BTB</h3>
+      <tr>
+        <td>for(int i = {{ti}}; i &lt; 7; i++)</td>
+        <td *ngIf="trainStep == 0 && stepName != 'Attack'">← Training</td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;if (i % 2 == 0)</td>
+        <td *ngIf="trainStep == 1 && stepName != 'Attack'">←</td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;targetBranch()</td>
+        <td *ngIf="ti % 2 == 0 && trainStep != -1 && stepName != 'Attack'">← Treina a CPU pra predizer essa função</td>
+      </tr>
+      <p></p>
+
+      <h3 *ngIf="stepName != 'Attack'">TargetBranch</h3>
+      <tr>
+        <td>targetBranch()</td>
+        <td *ngIf="step == 4 && stepName != 'Attack'">←</td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;char *dummy_array = malloc(64)</td>
+        <td *ngIf="step == 4 && stepName != 'Attack'">←</td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;dummy_array[0] = 'A'</td>
+        <td *ngIf="step == 4 && stepName != 'Attack'">← Executa algo que seja predizivel</td>
+      </tr>
+
+      <h3 *ngIf="stepName == 'Attack'">Analise de Cache</h3>
+      <tr>
+        <td *ngIf=" stepName == 'Attack'">cacheAnalyzer()</td>
+        <td *ngIf=" stepName == 'Attack'">←</td>
+      </tr>
+      <tr>
+        <td *ngIf=" stepName == 'Attack'">&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; 256; i++)</td>
+        <td *ngIf=" stepName == 'Attack'">←</td>
+      </tr>
+      <tr>
+        <td *ngIf=" stepName == 'Attack'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cache[i * 64];</td>
+        <td *ngIf=" stepName == 'Attack'">←</td>
+      </tr>
+      <tr>
+        <td *ngIf=" stepName == 'Attack'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;checkTimeAccess()</td>
+        <td *ngIf=" stepName == 'Attack'">←</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="cache-level-container">
+  <h4>Cache</h4>
+  <div class="cache-entries">
+    <div
+      *ngFor="let entry of cacheEntries"
+      class="cache-entry"
+      [class.highlighted]="highlightedIndex === 1"
+    >
+      {{ entry.data }}
+    </div>
+  </div>
+</div>
+<button (click)="start()">Start</button>
+<button (click)="nextStep()">Next Step</button>
+<button (click)="traintTBT()" *ngIf="stepName != 'BTB Treinada'" >Train TBT</button>
+<button (click)="attack()" *ngIf="stepName == 'BTB Treinada'" >Attack</button>

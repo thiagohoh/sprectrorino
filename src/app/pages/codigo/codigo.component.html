@@ -1,0 +1,14 @@
+<h2>Código</h2>
+<button (click)="incrementX()">Incrementar X</button>
+<button (click)="setXToK()">Ler K</button>
+
+<div [style.background-color]="getBackgroundColor()">
+  <div *ngIf="x !== undefined">
+    <p>
+      x = {{ x }} <br>
+      if (x &lt; array1_size) <br>
+      &nbsp;&nbsp;&nbsp;&nbsp; y = array2[array1[x] * 4096] <br>
+    </p>
+  </div>
+</div>
+<app-cache1></app-cache1>

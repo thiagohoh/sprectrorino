@@ -1,0 +1,24 @@
+.pipeline-container {
+    text-align: center;
+  }
+
+  .pipeline-stage {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px; /* Espaço entre as fases */
+  }
+
+  .instruction-container {
+    position: relative;
+    min-height: 50px; /* Defina a altura desejada */
+    overflow: hidden; /* Adiciona um overflow hidden para esconder instruções que não deveriam ser mostradas ainda */
+  }
+
+  @keyframes moveAnimation {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }

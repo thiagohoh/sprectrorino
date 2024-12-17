@@ -1,0 +1,9 @@
+.instruction {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+  .highlighted {
+    background-color: yellow;
+  }

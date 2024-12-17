@@ -1,0 +1,26 @@
+<div probe-array-container probe-array-right>
+  <h3>Probe Array</h3>
+  <br>
+  <!-- Iteração da seta e destaque -->
+  <div class="array-container">
+    <div
+      *ngFor="let item of data; let i = index"
+      class="array-item"
+      (click)="probeArray(i, 1)" 
+      [ngClass]="{ 'active': showTooltip && selectedIndex === i && currentCacheLevel === 1, 'highlighted': highlightIndex === i }"
+    >
+      {{ item }}
+      <div class="arrow" *ngIf="arrowIndex === i">&rarr;</div>
+      <div class="tooltip" *ngIf="showTooltip && selectedIndex === i && currentCacheLevel === 1">
+        <span>Mais Rápido</span>
+      </div>
+    </div>
+  </div>
+ <!-- Botão para iniciar o destaque -->
+ <button (click)="startHighlight()">Iniciar Ataque</button>
+  <!-- Botão para iniciar a iteração da seta -->
+  <button (click)="startArrowIteration()">Iniciar Fush+Reload</button>
+
+  <!-- Componente de cache -->
+  <app-cache [level]="1" [cacheEntries]="cache[1]"></app-cache>
+</div>

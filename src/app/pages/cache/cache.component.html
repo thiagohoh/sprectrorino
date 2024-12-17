@@ -1,0 +1,10 @@
+<div class="cache-level-container">
+    <h4>Cache</h4>
+    <div class="cache-entries">
+        <div *ngFor="let entry of cacheEntries" class="cache-entry" [class.highlighted]="entry.index === highlightedIndex">
+            {{ entry.data }}
+          </div>
+          
+    </div>
+  </div>
+  

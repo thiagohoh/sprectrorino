@@ -1,0 +1,22 @@
+.cache-level-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.cache-entries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cache-entry {
+  border: 1px solid #ddd;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.cache-entry.highlighted {
+  background-color: yellow; 
+}

@@ -1,0 +1,25 @@
+<div>
+    <h3>Pipeline</h3>
+    <table>
+      <tr *ngFor="let stage of pipelineStages" class="pipeline-stage">
+        <td>
+          <h4>{{ stage }}</h4>
+          <div class="instruction-container">
+            <app-instruction
+            *ngFor="let instruction of getInstructionsByPhase(stage); let i = index"
+            [instructionText]="instruction.text"
+            
+            [phase]="stage"
+            [moveAnimation]="instruction.animation"
+            ></app-instruction>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <button (click)="executarOrdem()">Exercutar na Ordem</button>
+    <button (click)="executarForaDeOrdem()">Executar Fora de Ordem</button>
+
+    <div *ngIf="probeArray1">
+      <app-probe-array></app-probe-array>
+    </div>
+  </div>

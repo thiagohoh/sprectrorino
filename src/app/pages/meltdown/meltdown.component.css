@@ -1,0 +1,24 @@
+.memory-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .memory-bar {
+    width: 30px;
+    background-color: #3498db;
+    margin-top: 10px;
+  }
+  
+  .memory-info {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,18 @@
+<div>
+    <h3>Array2</h3>
+    <br>
+  
+    <!-- Iteração da seta -->
+    <div class="array-container">
+      <div *ngFor="let item of data; let i = index" class="array-item" (click)="probeArray(i, 1)" [ngClass]="{ 'active': showTooltip }" >
+        {{ item }}
+        <div class="arrow" *ngIf="arrowIndex === i">&rarr;</div>
+        <div class="tooltip" *ngIf="showTooltip && tooltipIndex === i">
+            <span>Mais Rápido</span>
+        </div>
+      </div>
+    </div>
+    <!-- Botão para iniciar a iteração da seta -->
+    <button (click)="startArrowIteration()">Iniciar Flush+Reload</button>
+  </div>
+  

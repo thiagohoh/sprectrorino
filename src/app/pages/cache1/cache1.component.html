@@ -1,0 +1,14 @@
+<div class="cache-level-container">
+    <h4>Cache</h4>
+    <div class="cache-entries">
+        <div *ngFor="let entry of cacheEntries" class="cache-entry" [class.highlighted]="highlightedIndex === 1">
+            {{ entry.data }}
+          </div>
+    </div>
+  </div>
+<button (click)="showArray2()">Analisar Array2</button>
+
+<div *ngIf="array2">
+  <app-array2></app-array2>
+</div>
+  

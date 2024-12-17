@@ -1,0 +1,67 @@
+<h2>Spectre PHT</h2>
+<div [style.background-color]="getBackgroundColor()">
+  <div *ngIf="x !== undefined">
+
+    <table>
+      <tr>
+        <td>dados = [1,2,3,4]</td>
+        <td *ngIf="step == 0">←</td>
+      </tr>
+
+      <tr>
+        <td>entrada = {{ entry }}</td>
+        <td *ngIf="step == 1">←</td>
+      </tr>
+
+      <tr>
+        <td>if (entrada &lt; dados.size)</td>
+        <td *ngIf="step == 2">← - dados.size Não está na cache</td>
+      </tr>
+
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;secret = dado[entrada]</td>
+        <td *ngIf="step == 3">← - Especulação</td>
+      </tr>
+     
+        <h3 *ngIf="showAttackCode">Attack</h3>
+
+        <tr *ngIf="showAttackCode">
+          <td>c = ['a','b','c','d','e', ... 'A','B'...'Z']</td>
+          <td *ngIf="step == 4">←</td>
+        </tr>
+        <tr *ngIf="showAttackCode">
+          <td>c[{{c}}]</td>
+          <td *ngIf="step == 5 || step == 8 ">← - Coloca um valor do array na cache</td>
+        </tr>
+        <tr *ngIf="showAttackCode">
+          <td>c[secret]</td>
+          <td *ngIf="step == 6 || step == 9">
+            ← - Checa o tempo que demora pra ler o valor
+          </td>
+        </tr>
+        <tr *ngIf="showAttackCode">
+          <td>timeOf(c[secret]) == timeOf(c[{{c}}])</td>
+          <td *ngIf="step == 7 || step == 10">
+            ← - Compara o tempo de leitura dos valores, podendo inferir se foi lido da cache ou não.
+          </td>
+        </tr>
+     
+    </table>
+  </div>
+</div>
+
+<div class="cache-level-container">
+  <h4>Cache</h4>
+  <div class="cache-entries">
+    <div
+      *ngFor="let entry of cacheEntries"
+      class="cache-entry"
+      [class.highlighted]="highlightedIndex === 1"
+    >
+      {{ entry.data }}
+    </div>
+  </div>
+</div>
+<button (click)="start()">Start</button>
+<button (click)="nextStep()">Next Step</button>
+

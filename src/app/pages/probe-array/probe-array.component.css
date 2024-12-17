@@ -1,0 +1,67 @@
+/* probe-array.component.css */
+
+.array-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.array-item.active {
+  background-color: lightblue;
+}
+
+.array-item.highlighted {
+  background-color: yellow;
+}
+
+.array-container {
+  display: flex;
+  gap: 10px;
+}
+
+.tooltip {
+  position: absolute;
+  top: -30px;
+  background-color: #4caf50;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.cache-level {
+  margin-left: 5px;
+  font-size: 0.8em;
+}
+
+.cache-controls {
+  margin-top: 10px;
+}
+
+.array-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.arrow {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px; /* Aumente o valor para tornar a seta mais grossa */
+  color: red;
+  writing-mode: vertical-rl;
+}
+.probe-array-container {
+  display: flex;
+  gap: 10px;
+}
+/* Adicione a classe para posicionar à direita */
+.probe-array-right {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
